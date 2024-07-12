@@ -1,11 +1,11 @@
 export type category = {
     name: string;
-}
-
-export type TInventory = {
-    quantity: number;
-    inStock: boolean;
 };
+
+// export type TInventory = {
+//     quantity: number;
+//     inStock: boolean;
+// };
 
 export type TProduct = {
     image: string;
@@ -13,7 +13,8 @@ export type TProduct = {
     description: string;
     price: number;
     category: string;
-    inventory: TInventory;
+    quantity: number;
+    inStock: boolean;
     rating: number;
     isDeleted: boolean;
 };
