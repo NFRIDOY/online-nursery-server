@@ -3,6 +3,7 @@ import { ProductRouters } from "./modules/products/product.route";
 import { OrderRouters } from "./modules/orders/order.route";
 import cors from "cors";
 import { StatsRouters } from "./modules/stats/stats.route";
+import { CategoryRouters } from "./modules/category/category.route";
 const app = express();
 
 // Define CORS options
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/products", ProductRouters);
+app.use("/api/category", CategoryRouters);
 app.use("/api/orders", OrderRouters);
 app.use("/api/stats", StatsRouters);
 
