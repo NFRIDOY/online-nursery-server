@@ -1,6 +1,8 @@
-export type category = {
-    name: string;
-};
+import { TCategory } from "../category/category.interface";
+
+// export type category = {
+//     name: string;
+// };
 
 export type TInventory = {
     quantity: number;
@@ -12,7 +14,7 @@ export type TProduct = {
     title: string;
     description: string;
     price: number;
-    category: string;
+    category: TCategory;
     inventory: TInventory;
     rating: number;
     isDeleted: boolean;

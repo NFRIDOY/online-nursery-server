@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { ProductServices } from "./category.service";
+import { CategoryServices } from "./category.service";
 
 //1
 const createCategory = async (req: Request, res: Response) => {
     try {
-        const productData = req.body;
-        const result = await ProductServices.createCategory(productData);
+        const CategoryData = req.body;
+        const result = await CategoryServices.createCategory(CategoryData);
 
         // console.log(result)
         if (!result) {
             return res.json({
                 success: false,
-                message: "Product is not created!",
+                message: "Category is not created!",
                 data: result,
             });
         }
@@ -19,7 +19,7 @@ const createCategory = async (req: Request, res: Response) => {
         // // Here result is the inserted document
         res.json({
             success: true,
-            message: "Product created successfully!",
+            message: "Category created successfully!",
             data: result,
         });
     } catch (error) {
@@ -34,16 +34,16 @@ const getAllCategory = async (req: Request, res: Response) => {
 
         let result;
         if (search) {
-            result = await ProductServices.getSearchCategory(search);
+            result = await CategoryServices.getSearchCategory(search);
         } else {
-            result = await ProductServices.getAllCategory();
+            result = await CategoryServices.getAllCategory();
         }
 
         // console.log(result)
         if (!result || result.length === 0) {
             return res.json({
                 success: false,
-                message: "No products found!",
+                message: "No Categorys found!",
                 data: [],
             });
         }
@@ -51,7 +51,7 @@ const getAllCategory = async (req: Request, res: Response) => {
         // // Here result is the inserted document
         res.json({
             success: true,
-            message: "Products fetched successfully!",
+            message: "Categorys fetched successfully!",
             data: result,
         });
     } catch (error) {
@@ -61,9 +61,9 @@ const getAllCategory = async (req: Request, res: Response) => {
 //3
 const getCategoryById = async (req: Request, res: Response) => {
     try {
-        const id = req.params.productId;
+        const id = req.params.CategoryId;
 
-        const result = await ProductServices.getCategoryById(id);
+        const result = await CategoryServices.getCategoryById(id);
 
         // console.log(result)
         // // data is sending as response from the database to the frontend.
@@ -71,13 +71,13 @@ const getCategoryById = async (req: Request, res: Response) => {
         if (!result) {
             return res.json({
                 success: false,
-                message: "Product not found",
+                message: "Category not found",
                 data: result,
             });
         }
         res.json({
             success: true,
-            message: "Products fetched successfully!",
+            message: "Categorys fetched successfully!",
             data: result,
         });
     } catch (error) {
@@ -87,22 +87,22 @@ const getCategoryById = async (req: Request, res: Response) => {
 //4
 const updateCategoryById = async (req: Request, res: Response) => {
     try {
-        const id = req.params.productId;
-        const updateProduct = req.body;
-        const result = await ProductServices.updateCategoryById(
+        const id = req.params.CategoryId;
+        const updateCategory = req.body;
+        const result = await CategoryServices.updateCategoryById(
             id,
-            updateProduct
+            updateCategory
         );
 
         // console.log(result)
         if (!result) {
-            return res.json({ success: false, message: "Product not found" });
+            return res.json({ success: false, message: "Category not found" });
         }
         // // data is sending as response from the database to the frontend.
         // // Here result is the inserted document
         res.json({
             success: true,
-            message: "Product updated successfully!",
+            message: "Category updated successfully!",
             data: result,
         });
     } catch (error) {
@@ -113,15 +113,15 @@ const updateCategoryById = async (req: Request, res: Response) => {
 //5
 const deleteCategoryById = async (req: Request, res: Response) => {
     try {
-        const id = req.params.productId;
+        const id = req.params.CategoryId;
 
-        const result = await ProductServices.deleteCategoryById(id);
+        const result = await CategoryServices.deleteCategoryById(id);
 
         // console.log(result)
         if (!result) {
             return res.json({
                 success: false,
-                message: "Product not found",
+                message: "Category not found",
                 data: null,
             });
         }
@@ -129,7 +129,7 @@ const deleteCategoryById = async (req: Request, res: Response) => {
         // // Here result is the inserted document
         res.json({
             success: true,
-            message: "Product deleted successfully!",
+            message: "Category deleted successfully!",
             data: null,
         });
     } catch (error) {

@@ -1,25 +1,25 @@
-import { TProduct } from "./category.interface";
-import { Product } from "./category.model";
+import { TCategory } from "./category.interface";
+import { Category} from "./category.model";
 
-const createCategory = async (payload: TProduct) => {
-    const result = await Product.create(payload);
+const createCategory = async (payload: TCategory) => {
+    const result = await Category.create(payload);
     return result;
 };
 const getAllCategory = async () => {
-    const result = await Product.find();
+    const result = await Category.find();
     return result;
 };
 const getCategoryById = async (id: string) => {
-    const result = await Product.findById(id);
+    const result = await Category.findById(id);
     return result;
 };
 const getSearchCategory = async (name: string) => {
     const regex = new RegExp(name, "i"); // 'i' makes it case insensitive
-    const result = await Product.find({ name: { $regex: regex } });
+    const result = await Category.find({ name: { $regex: regex } });
     return result;
 };
-const updateCategoryById = async (id: string, payload: TProduct) => {
-    const result = await Product.findByIdAndUpdate(id, payload, {
+const updateCategoryById = async (id: string, payload: TCategory) => {
+    const result = await Category.findByIdAndUpdate(id, payload, {
         new: true, // Return the updated document
         runValidators: true, // Validate the update operation
     });
@@ -28,11 +28,11 @@ const updateCategoryById = async (id: string, payload: TProduct) => {
 
 //5
 const deleteCategoryById = async (id: string) => {
-    const result = await Product.findByIdAndDelete(id);
+    const result = await Category.findByIdAndDelete(id);
     return result;
 };
 
-export const ProductServices = {
+export const CategoryServices = {
     createCategory,
     getAllCategory,
     getCategoryById,

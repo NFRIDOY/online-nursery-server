@@ -3,7 +3,7 @@ import { TCategory } from "./category.interface";
 
 // Define the schema
 
-const categorySchema = new Schema<TCategory>({
+export const categorySchema = new Schema<TCategory>({
     image: {
         type: String,
         required: true,

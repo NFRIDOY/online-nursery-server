@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { TInventory, TProduct } from "./product.interface";
+import { categorySchema } from "../category/category.model";
 
 // Define the Variant schema
 
@@ -32,7 +33,7 @@ const productSchema = new Schema<TProduct>({
         required: true,
     },
     category: {
-        type: String,
+        type: categorySchema,
         required: true,
     },
     inventory: {
