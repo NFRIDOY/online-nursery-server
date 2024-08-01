@@ -13,9 +13,9 @@ const getProductById = async (id: string) => {
     const result = await Product.findById(id);
     return result;
 };
-const getSearchProducts = async (name: string) => {
-    const regex = new RegExp(name, "i"); // 'i' makes it case insensitive
-    const result = await Product.find({ name: { $regex: regex } });
+const getSearchProducts = async (title: string) => {
+    const regex = new RegExp(title, "i"); // 'i' makes it case insensitive
+    const result = await Product.find({ title: { $regex: regex } });
     return result;
 };
 const updateProductById = async (id: string, payload: TProduct) => {
