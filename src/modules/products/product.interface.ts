@@ -1,8 +1,8 @@
 import { TCategory } from "../category/category.interface";
 
-// export type category = {
-//     name: string;
-// };
+export type category = {
+    name: string;
+};
 
 export type TInventory = {
     quantity: number;
@@ -10,11 +10,12 @@ export type TInventory = {
 };
 
 export type TProduct = {
+    _id?: string;
     image: string;
     title: string;
     description: string;
     price: number;
-    category?: TCategory;
+    category?: TCategory | category;
     inventory: TInventory;
     rating: number | string;
     isDeleted: boolean;
