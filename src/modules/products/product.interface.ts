@@ -17,6 +17,6 @@ export type TProduct = {
     price: number;
     category?: TCategory | category;
     inventory: TInventory;
-    rating: number | string;
+    rating: string;
     isDeleted: boolean;
 };

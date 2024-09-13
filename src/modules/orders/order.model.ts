@@ -1,6 +1,7 @@
 import mongoose, { Schema, model } from "mongoose";
 import { TOrder } from "./order.interface";
 import { Product } from "../products/product.model";
+import { max } from "date-fns";
 
 const OrderSchema = new Schema<TOrder>({
     email: {
@@ -21,19 +22,52 @@ const OrderSchema = new Schema<TOrder>({
             },
         },
     ],
-    // productId: {
-    //     type: String,
-    //     required: true,
-    // },
-    price: {
+    customerId: {
+        type: String,
+        required: true,
+    },
+    customerName: {
+        type: String,
+        required: true,
+    },
+    customerPhone: {
+        type: String,
+        required: true,
+    },
+    customerEmail: {
+        type: String,
+        required: true,
+    },
+    customerAddress: {
+        type: String,
+        required: true,
+    },
+    deliveryFee: {
         type: Number,
         required: true,
     },
-    quantity: {
+    products: [
+        {
+            product: {
+                type: Schema.Types.ObjectId,
+                ref: Product, // Reference to the Product model
+                required: true,
+            },
+            quantity: {
+                type: Number,
+                required: true,
+                min: 1,
+            },
+        },
+    ],
+    totalAmount: {
         type: Number,
         required: true,
     },
-    
+    grandTotal: {
+        type: String,
+        required: true,
+    },
 });
 
 export const Order = model<TOrder>("Order", OrderSchema);

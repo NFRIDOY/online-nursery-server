@@ -89,12 +89,13 @@ const updateProductById = async (req: Request, res: Response) => {
     try {
         const id = req.params.productId;
         const updateProduct = req.body;
+        console.log("updateProduct => ",updateProduct)
         const result = await ProductServices.updateProductById(
             id,
             updateProduct
         );
 
-        // console.log(result)
+        console.log("result==>",result)
         if (!result) {
             return res.json({ success: false, message: "Product not found" });
         }
