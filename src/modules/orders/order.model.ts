@@ -4,27 +4,8 @@ import { Product, productSchema } from "../products/product.model";
 import { max } from "date-fns";
 
 const OrderSchema = new Schema<TOrder>({
-    email: {
-        type: String,
-        required: true,
-    },
-    cart: [
-        {
-            product: {
-                type: Schema.Types.ObjectId,
-                ref: Product, // Reference to the Product model
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                required: true,
-                min: 1,
-            },
-        },
-    ],
     customerId: {
         type: String,
-        required: true,
     },
     customerName: {
         type: String,
@@ -36,7 +17,6 @@ const OrderSchema = new Schema<TOrder>({
     },
     customerEmail: {
         type: String,
-        required: true,
     },
     customerAddress: {
         type: String,

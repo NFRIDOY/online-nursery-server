@@ -18,76 +18,94 @@ const createOrder = async (req: Request, res: Response) => {
         // })
 
         const OrderData = req.body;
+        // Create Order
+        const result = await OrderServices.createOrder(OrderData);
+
+        // console.log(result)
+        if (!result) {
+            return res.json({
+                success: false,
+                message: "Order is not created!",
+                data: result,
+            });
+        }
+        // // data is sending as response from the database to the frontend.
+        // // Here result is the inserted document
+        res.json({
+            success: true,
+            message: "Order created successfully!",
+            data: result,
+        });
 
         // validate id
 
-        function isValidObjectId(id: any) {
-            return ObjectId.isValid(id) && String(new ObjectId(id)) === id;
-        }
+        // function isValidObjectId(id: any) {
+        //     return ObjectId.isValid(id) && String(new ObjectId(id)) === id;
+        // }
 
-        if (!isValidObjectId(OrderData?.productId)) {
-            return res.json({
-                success: false,
-                message: "productId is not valid!",
-            });
-        }
+        // if (!isValidObjectId(OrderData?.productId)) {
+        //     return res.json({
+        //         success: false,
+        //         message: "productId is not valid!",
+        //     });
+        // }
         // Find the product Stock
 
-        const findProductStock = await ProductServices.getProductById(
-            OrderData?.productId
-        );
+        // const findProductStock = await ProductServices.getProductById(
+        //     OrderData?.productId
+        // );
 
         // console.log("findProductStock ==1>", findProductStock);
 
-        if (findProductStock) {
-            // Update the product Quantity
-            const updateProductStock =
-                await ProductServices.updateStockByProductId(
-                    OrderData?.productId,
-                    OrderData?.quantity
-                );
+        // if (findProductStock) {
+        //     // Update the product Quantity
+        //     const updateProductStock =
+        //         await ProductServices.updateStockByProductId(
+        //             OrderData?.productId,
+        //             OrderData?.quantity
+        //         );
 
-            // const updateProductQuantity = await ProductServices.updateProductById()
+        //     // const updateProductQuantity = await ProductServices.updateProductById()
 
-            // console.log("updateProductStock ==2>", updateProductStock);
-            // if (!getProductStock) {
-            if (!updateProductStock) {
-                return res.json({
-                    success: false,
-                    message: "Insufficient quantity available in inventory",
-                });
-            }
-            // else if (getProductStock?.length === 0) {
-            //     return res.json({
-            //         success: false,
-            //         message: "Order not found",
-            //     });
-            // }
+        //     // console.log("updateProductStock ==2>", updateProductStock);
+        //     // if (!getProductStock) {
+        //     if (!updateProductStock) {
+        //         return res.json({
+        //             success: false,
+        //             message: "Insufficient quantity available in inventory",
+        //         });
+        //     }
+        //     // else if (getProductStock?.length === 0) {
+        //     //     return res.json({
+        //     //         success: false,
+        //     //         message: "Order not found",
+        //     //     });
+        //     // }
 
-            // Create Order
-            const result = await OrderServices.createOrder(OrderData);
+        //     // Create Order
+        //     const result = await OrderServices.createOrder(OrderData);
 
-            // console.log(result)
-            if (!result) {
-                return res.json({
-                    success: false,
-                    message: "Order is not created!",
-                    data: result,
-                });
-            }
-            // // data is sending as response from the database to the frontend.
-            // // Here result is the inserted document
-            res.json({
-                success: true,
-                message: "Order created successfully!",
-                data: result,
-            });
-        } else {
-            return res.json({
-                success: false,
-                message: "Order not found",
-            });
-        }
+        //     // console.log(result)
+        //     if (!result) {
+        //         return res.json({
+        //             success: false,
+        //             message: "Order is not created!",
+        //             data: result,
+        //         });
+        //     }
+        //     // // data is sending as response from the database to the frontend.
+        //     // // Here result is the inserted document
+        //     res.json({
+        //         success: true,
+        //         message: "Order created successfully!",
+        //         data: result,
+        //     });
+        // } else {
+        //     return res.json({
+        //         success: false,
+        //         message: "Order not found",
+        //     });
+        // }
     } catch (error) {
         console.log("Error ==>", error);
     }
