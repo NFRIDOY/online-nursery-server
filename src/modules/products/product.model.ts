@@ -15,7 +15,7 @@ const inventorySchema = new Schema<TInventory>({
     },
 });
 
-const productSchema = new Schema<TProduct>({
+export const productSchema = new Schema<TProduct>({
     image: {
         type: String,
         required: true,
@@ -41,7 +41,7 @@ const productSchema = new Schema<TProduct>({
         required: true,
     },
     rating: {
-        type: Number,
+        type: String,
         required: true,
     },
     isDeleted: {

@@ -1,6 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 import { TOrder } from "./order.interface";
-import { Product } from "../products/product.model";
+import { Product, productSchema } from "../products/product.model";
 import { max } from "date-fns";
 
 const OrderSchema = new Schema<TOrder>({
@@ -44,29 +44,15 @@ const OrderSchema = new Schema<TOrder>({
     },
     deliveryFee: {
         type: Number,
-        required: true,
+        default: 100,
     },
-    products: [
-        {
-            product: {
-                type: Schema.Types.ObjectId,
-                ref: Product, // Reference to the Product model
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                required: true,
-                min: 1,
-            },
-        },
-    ],
+    products: [productSchema],
     totalAmount: {
         type: Number,
         required: true,
     },
     grandTotal: {
         type: String,
-        required: true,
     },
 });
 
