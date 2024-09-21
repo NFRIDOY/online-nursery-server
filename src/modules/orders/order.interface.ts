@@ -11,4 +11,6 @@ export type TOrder = {
     products: TProduct[];
     totalAmount: number;
     grandTotal?: number;
+    status: string;
+    isDeleted: boolean;
 };

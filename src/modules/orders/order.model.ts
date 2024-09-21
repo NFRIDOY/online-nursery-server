@@ -6,10 +6,7 @@ import { min } from "date-fns";
 
 
 export const productCartSchema = new Schema({
-    image: {
-        type: String,
-        required: true,
-    },
+
     title: {
         type: String,
         required: true,
@@ -41,7 +38,8 @@ export const productCartSchema = new Schema({
         type: Number,
         required: true,
         min: 1,
-    }
+    },
+    
 });
 
 export const ProductCart = model("ProductCart", productCartSchema);
@@ -77,6 +75,13 @@ const OrderSchema = new Schema<TOrder>({
     grandTotal: {
         type: String || Number,
     },
+    status: {
+        type: String,
+        required: true,
+    },
+    isDeleted: {
+        type: Boolean,
+    }
 });
 
 export const Order = model<TOrder>("Order", OrderSchema);
