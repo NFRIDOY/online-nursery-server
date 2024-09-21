@@ -1,7 +1,50 @@
 import mongoose, { Schema, model } from "mongoose";
 import { TOrder } from "./order.interface";
-import { Product, productSchema } from "../products/product.model";
-import { max } from "date-fns";
+import { inventorySchema, Product, productSchema } from "../products/product.model";
+import { categorySchema } from "../category/category.model";
+import { min } from "date-fns";
+
+
+export const productCartSchema = new Schema({
+    image: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+    category: {
+        type: categorySchema,
+        required: true,
+    },
+    inventory: {
+        type: inventorySchema,
+        required: true,
+    },
+    rating: {
+        type: String,
+        required: true,
+    },
+    isDeleted: {
+        type: Boolean,
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: 1,
+    }
+});
+
+export const ProductCart = model("ProductCart", productCartSchema);
 
 const OrderSchema = new Schema<TOrder>({
     customerId: {
@@ -26,7 +69,7 @@ const OrderSchema = new Schema<TOrder>({
         type: Number,
         default: 100,
     },
-    products: [productSchema],
+    products: [productCartSchema],
     totalAmount: {
         type: Number,
         required: true,

@@ -4,7 +4,7 @@ import { categorySchema } from "../category/category.model";
 
 // Define the Variant schema
 
-const inventorySchema = new Schema<TInventory>({
+export const inventorySchema = new Schema<TInventory>({
     quantity: {
         type: Number,
         required: true,
