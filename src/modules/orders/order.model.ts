@@ -75,7 +75,7 @@ const OrderSchema = new Schema<TOrder>({
         required: true,
     },
     grandTotal: {
-        type: String,
+        type: String || Number,
     },
 });
 
