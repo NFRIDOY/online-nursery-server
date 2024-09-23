@@ -8,7 +8,8 @@ const app = express();
 
 // Define CORS options
 const corsOptions: cors.CorsOptions = {
-    origin: "http://localhost:5173", // Allow only this origin
+    // origin: "http://localhost:5173", // Allow only this origin
+    origin: "https://online-nursery-client.vercel.app", // Allow only this origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allowed methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
     credentials: true, // Allow cookies to be sent
